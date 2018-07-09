@@ -1,6 +1,6 @@
 # Concurrency
 
-## 芥末无疆 sss 微信公众号：JavaProgrammer
+## 芥末无疆 sss 微信公众号：JavaEdge
 
 不断更新，可以关注并留言自己希望学习的技术
 
