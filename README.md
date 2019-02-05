@@ -78,3 +78,5 @@ AQS是J.U.C的重要组件，也是面试的重要考点。这一章里将重点
 
 # 第17章 知识体系总结
 对知识进行总结回顾,希望大家都能有所收获，并期待与大家共同探讨并发与高并发的话题
+
+![](https://upload-images.jianshu.io/upload_images/4685968-76a236d781f7dee7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
