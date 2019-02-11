@@ -1,15 +1,15 @@
-# 0 联系我
-![](https://uploadfiles.nowcoder.com/images/20190115/7380095_1547532658211_BBDEA09F9E1DC6A4BC8855C7B0BD7ED6 "图片标题") 
-1.Q群【Java开发技术交流】：[https://jq.qq.com/?_wv=1027&k=5UB4P1T](https://jq.qq.com/?_wv=1027&k=5UB4P1T)
+# 联系我
+![](http://upload-images.jianshu.io/upload_images/4685968-6a8b28d2fd95e8b7?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 "图片标题") 
+1.[Java开发技术交流Q群](https://jq.qq.com/?_wv=1027&k=5UB4P1T)
 
-2.完整博客链接:[www.shishusheng.com](http://www.shishusheng.com)
+2.[完整博客链接](http://www.shishusheng.com)
 
-3.知乎:[http://www.zhihu.com/people/shi-shu-sheng-](http://www.zhihu.com/people/shi-shu-sheng-)
+3.[个人知乎](http://www.zhihu.com/people/shi-shu-sheng-)
 
-4.gayhub:[https://github.com/Wasabi1234](https://github.com/Wasabi1234)
+4.[gayhub](https://github.com/Wasabi1234)
 
-# Java 高并发理论 基础知识点全覆盖 博客阅读链接
-https://www.jianshu.com/p/8a3c6ac1e01e
+
+# [Java 高并发理论 基础知识点全覆盖](https://www.jianshu.com/p/8a3c6ac1e01e)
 
 # 第1章 准备（入门）
 目标：Java并发编程入门，适合没有并发编程经验的同学，本章首先从重点、特点、适合人群及学习收获几个方面对知识体系进行整体的介绍，然后会从一个实际的计数场景实现开始，给大家展示多线程并发时的线程不安全问题，让大家能够初体验到并发编程，之后会讲解并发和高并发的概念，并通过对比让大家明白到底什么是并发
