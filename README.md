@@ -11,6 +11,32 @@
 
 # [Java 高并发理论 基础知识点全覆盖](https://www.jianshu.com/p/8a3c6ac1e01e)
 
+# 带你构建完整的并发与高并发知识体系
+## 一旦形成完整的知识体系，无论是跳槽面试还是开发，你都将是最快脱颖而出的那一个
+
+![](https://upload-images.jianshu.io/upload_images/4685968-92447a24b4f8cf38.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+# 掌握多线程并发与线程安全，让你的程序更可靠
+## 通过大量的图例和代码来讲解，你犯过的错都在这里了
+![](https://upload-images.jianshu.io/upload_images/4685968-6fc1465c0b063ef8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+# 学会高并发处理思路与手段，让跳槽面试从容不迫
+## 并发与高并发是面试的重要考察点，常问面试问题与答案都在这里了
+![](https://upload-images.jianshu.io/upload_images/4685968-7fd306f9bc9b4bec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+# 环境参数
+基础工具 Maven、JDK8、Tomcat、MySQL、Redis 
+
+开发工具 Intellij IDEA 
+
+演示工具 Postman、JMeter、Apache Bench 
+
+项目框架 SpringBoot、Mybatis 
+
+可选组件 Kafka、RabbitMQ、elastic-job等
+
+# 教程目录
+
 # 第1章 准备（入门）
 目标：Java并发编程入门，适合没有并发编程经验的同学，本章首先从重点、特点、适合人群及学习收获几个方面对知识体系进行整体的介绍，然后会从一个实际的计数场景实现开始，给大家展示多线程并发时的线程不安全问题，让大家能够初体验到并发编程，之后会讲解并发和高并发的概念，并通过对比让大家明白到底什么是并发
 
