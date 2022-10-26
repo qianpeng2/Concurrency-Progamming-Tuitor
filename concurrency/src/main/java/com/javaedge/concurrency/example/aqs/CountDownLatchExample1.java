@@ -21,7 +21,9 @@ public class CountDownLatchExample1 {
             final int threadNum = i;
             exec.execute(() -> {
                 try {
-                    test(threadNum);
+//                    test(threadNum);
+                    // i并不会和 count保持一致
+                    log.info("threadNum={},当前count={}", threadNum, countDownLatch.getCount());
                 } catch (Exception e) {
                     log.error("exception", e);
                 } finally {
