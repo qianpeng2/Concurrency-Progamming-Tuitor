@@ -17,7 +17,7 @@ public class CountDownLatchExample1 {
 
         final CountDownLatch countDownLatch = new CountDownLatch(threadCount);
 
-        for (int i = 0; i < threadCount; i++) {
+        for (int i = 1; i <= threadCount; i++) {
             final int threadNum = i;
             exec.execute(() -> {
                 try {
