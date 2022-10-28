@@ -29,7 +29,7 @@ public class CyclicBarrierExample1 {
 
         ExecutorService executor = Executors.newCachedThreadPool();
 
-        for (int i = 0; i < 10; i++) {// 10，相当于栅栏打开2次，重用了一次，
+        for (int i = 0; i < 10; i++) {// 10，相当于栅栏打开2次，重用了一次，如果 设置为 i<3 ，那么会一直等待其他线程(3,4)到达，直到永远
             final int threadNum = i;
             Thread.sleep(1000);
             executor.execute(() -> {
