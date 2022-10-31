@@ -21,6 +21,21 @@ public class FutureExample {
         }
     }
 
+    static class MyRunnable implements Runnable {
+
+        @Override
+        public void run() {
+            log.info("do something in Runnable");
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            log.info("do something in Runnable done");
+
+        }
+    }
+
     public static void main(String[] args) throws Exception {
         // 创建这个线程池的时候，默认的 keepAliveTime 是60s，因此在这个线程执行完毕后
         // 线程池其实还是在工作的，60s后才会关闭线程池
@@ -32,9 +47,13 @@ public class FutureExample {
          */
         ExecutorService executorService = Executors.newCachedThreadPool();
         Future<String> future = executorService.submit(new MyCallable());
+//        executorService.submit(new MyRunnable());
+        Future future2 = executorService.submit(new MyRunnable());
         log.info("do something in main");
 //        Thread.sleep(1000);
         String result = future.get();
+        Object result2 = future2.get();//得到的会是一个 null
         log.info("Callable result：{}", result);
+        log.info("Runnable result：{}", result2);
     }
 }
