@@ -21,14 +21,16 @@ public class SemaphoreExample2 {
             final int threadNum = i;
             exec.execute(() -> {
                 try {
-                    log.info("线程{}尝试一次性获取4个许可", threadNum);
+                    log.info("线程{}尝试一次性获取2个许可", threadNum);
                     // 如果每次尝试的许可数量超过了 初始许可数量，那么所有的线程都尝试获取这么多许可
                     // 20个线程 全部进入无限的等待
-                    semaphore.acquire(4); // 获取多个许可
+                    semaphore.acquire(2); // 获取多个许可
                     test(threadNum);
-                    log.info("线程{}尝试一次性释放3个许可", threadNum);
-                    semaphore.release(3); // 释放多个许可
-                    log.info("线程{}一次性释放3个许可成功", threadNum);
+                    log.info("线程{}尝试一次性释放4个许可", threadNum);
+                    semaphore.release(4); // 释放多个许可，多个线程会叠加，因此会导致某一个时刻的许可数量远远超出当初的 4
+                    log.info("线程{}一次性释放4个许可成功", threadNum);
+                    // 获取的许可数量和释放许可的数量不一致的时候，最后 线程11当前许可数量=43
+                    log.info("线程{}当前许可数量={}", threadNum, semaphore.availablePermits());
                 } catch (Exception e) {
                     log.error("exception", e);
                 }
