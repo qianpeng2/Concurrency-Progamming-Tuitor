@@ -25,7 +25,13 @@ public class FutureTaskExample {
         new Thread(futureTask).start();
         log.info("do something in main");
         Thread.sleep(1000);
-        String result = futureTask.get();
+        String result = futureTask.get();//会阻塞main线程，因此这里肯定是任务完成后再执行后面的代码
+        if (!futureTask.isDone()) {
+            log.info("任务没有完成，准备强制取消");
+            futureTask.cancel(true);
+        } else {
+            log.info("任务完成，无法取消");
+        }
         log.info("result：{}", result);
     }
 }
