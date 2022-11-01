@@ -25,13 +25,16 @@ public class FutureTaskExample {
         new Thread(futureTask).start();
         log.info("do something in main");
         Thread.sleep(1000);
-        String result = futureTask.get();//会阻塞main线程，因此这里肯定是任务完成后再执行后面的代码
         if (!futureTask.isDone()) {
             log.info("任务没有完成，准备强制取消");
             futureTask.cancel(true);
+            log.info("已强制取消异步任务");
+            log.info("是否真的取消了？{}", futureTask.isCancelled());
         } else {
             log.info("任务完成，无法取消");
         }
-        log.info("result：{}", result);
+        ////主线程抛出的异常：在获取异步任务的结果的时候， java.util.concurrent.CancellationException
+        String result = futureTask.get();//会阻塞main线程，因此这里肯定是任务完成后再执行后面的代码
+        log.info("FutureTask result：{}", result);
     }
 }
