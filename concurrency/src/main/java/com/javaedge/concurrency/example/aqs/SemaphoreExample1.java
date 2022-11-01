@@ -16,9 +16,12 @@ public class SemaphoreExample1 {
 
         ExecutorService exec = Executors.newCachedThreadPool();
 
+        // 信号量本质是一个计数器或者是共享锁，在申明阶段可以设置许可数量(也就是多少个线程可以同时被持有锁)
+        // 每 release 一次，就释放一个许可，然后可以被其他的线程再次持有
+        // 当 semaphore 上的许可数量为 0 的时候，调用处会被阻塞等待状态
         final Semaphore semaphore = new Semaphore(3);
 
-        for (int i = 0; i < threadCount; i++) {
+        for (int i = 1; i <= threadCount; i++) {
             final int threadNum = i;
             exec.execute(() -> {
                 try {

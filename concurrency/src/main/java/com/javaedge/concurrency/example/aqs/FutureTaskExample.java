@@ -34,7 +34,9 @@ public class FutureTaskExample {
             log.info("任务完成，无法取消");
         }
         ////主线程抛出的异常：在获取异步任务的结果的时候， java.util.concurrent.CancellationException
+        // futureTask.get() 一旦计算完成，就不能再次计算后者重复取消
         String result = futureTask.get();//会阻塞main线程，因此这里肯定是任务完成后再执行后面的代码
+//        futureTask.run();
         log.info("FutureTask result：{}", result);
     }
 }
