@@ -25,6 +25,9 @@ public class AtomicExample6 {
         ExecutorService executorService = Executors.newCachedThreadPool();
         final Semaphore semaphore = new Semaphore(threadTotal);
         final CountDownLatch countDownLatch = new CountDownLatch(clientTotal);
+        // 5000个线程，每次200个线程拿到了许可，开始执行
+        // 一旦 isHappened 是false，立马更新为 true，然后其他的线程的if判断均不成立
+        // 只输出一个 execute(只有一个线程会得到那部分的执行)
         for (int i = 0; i < clientTotal ; i++) {
             executorService.execute(() -> {
                 try {
