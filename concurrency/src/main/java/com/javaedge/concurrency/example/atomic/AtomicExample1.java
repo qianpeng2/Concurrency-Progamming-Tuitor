@@ -14,10 +14,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class AtomicExample1 {
 
     // 请求总数
-    public static int clientTotal = 5000;
+    public static int clientTotal = 100;
 
     // 同时并发执行的线程数
-    public static int threadTotal = 200;
+    public static int threadTotal = 5;
 
     public static AtomicInteger count = new AtomicInteger(0);
 
@@ -25,24 +25,31 @@ public class AtomicExample1 {
         ExecutorService executorService = Executors.newCachedThreadPool();
         final Semaphore semaphore = new Semaphore(threadTotal);
         final CountDownLatch countDownLatch = new CountDownLatch(clientTotal);
-        for (int i = 0; i < clientTotal ; i++) {
+        for (int i = 1; i <= clientTotal; i++) {
+            final int threadNum = i;
             executorService.execute(() -> {
                 try {
+                    log.info("i={}尝试获取许可", threadNum);
+                    // 允许5个线程同时做 原子+1并发操作，且是线程安全的
                     semaphore.acquire();
-                    add();
+                    add(threadNum);
                     semaphore.release();
+                    log.info("i={}释放许可成功", threadNum);
                 } catch (Exception e) {
                     log.error("exception", e);
                 }
                 countDownLatch.countDown();
             });
         }
-        countDownLatch.await();
+        log.info("main-等待clientTotal");
+        countDownLatch.await();// main 线程要等待100个线程的自增操作完成再关闭线程池，并打印出来 共享变量 count 的值
+        log.info("main-等待clientTotal结束");
         executorService.shutdown();
         log.info("count:{}", count.get());
     }
 
-    private static void add() {
+    private static void add(final int threadNum) {
+        log.info("i={},AtomicInteger-incrementAndGet", threadNum);
         count.incrementAndGet();
         // count.getAndIncrement();
     }
