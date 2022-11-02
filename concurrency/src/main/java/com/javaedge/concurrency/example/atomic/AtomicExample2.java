@@ -19,13 +19,14 @@ public class AtomicExample2 {
     // 同时并发执行的线程数
     public static int threadTotal = 200;
 
-    public static AtomicLong count = new AtomicLong(0);
+    // example1 是 对Integer的原子并发操作，这里是对 Long的原子并发操作
+    public static AtomicLong count = new AtomicLong(0);//不通过重量级锁 synchronize 实现多线程环境下的安全递增，非阻塞的
 
     public static void main(String[] args) throws Exception {
         ExecutorService executorService = Executors.newCachedThreadPool();
         final Semaphore semaphore = new Semaphore(threadTotal);
         final CountDownLatch countDownLatch = new CountDownLatch(clientTotal);
-        for (int i = 0; i < clientTotal ; i++) {
+        for (int i = 0; i < clientTotal; i++) {
             executorService.execute(() -> {
                 try {
                     semaphore.acquire();

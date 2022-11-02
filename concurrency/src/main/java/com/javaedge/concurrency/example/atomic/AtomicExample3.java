@@ -19,13 +19,14 @@ public class AtomicExample3 {
     // 同时并发执行的线程数
     public static int threadTotal = 200;
 
+    // 在高并发下，AtomicLong的性能会越来越差劲。因此 LongAdder 作为替代
     public static LongAdder count = new LongAdder();
 
     public static void main(String[] args) throws Exception {
         ExecutorService executorService = Executors.newCachedThreadPool();
         final Semaphore semaphore = new Semaphore(threadTotal);
         final CountDownLatch countDownLatch = new CountDownLatch(clientTotal);
-        for (int i = 0; i < clientTotal ; i++) {
+        for (int i = 1; i <= clientTotal; i++) {
             executorService.execute(() -> {
                 try {
                     semaphore.acquire();
