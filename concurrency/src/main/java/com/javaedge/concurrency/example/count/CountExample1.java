@@ -42,6 +42,6 @@ public class CountExample1 {
     }
 
     private static void add() {
-        count++;
+        count++;// 非原子操作，不是线程安全的
     }
 }
