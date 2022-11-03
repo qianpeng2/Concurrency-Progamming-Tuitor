@@ -42,6 +42,6 @@ public class CountExample3 {
     }
 
     private synchronized static void add() {
-        count++;
+        count++;// synchronized 关键字是一个重量级锁，线程安全
     }
 }
