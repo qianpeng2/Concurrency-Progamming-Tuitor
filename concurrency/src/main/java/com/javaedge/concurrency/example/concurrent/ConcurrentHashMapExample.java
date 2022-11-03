@@ -20,8 +20,11 @@ public class ConcurrentHashMapExample {
     // 同时并发执行的线程数
     public static int threadTotal = 200;
 
+    // 和 notSafe 中不安全的类相比，这里的 ConcurrentHashMap 是线程安全的，但是其实也不是绝对的线程安全
     private static Map<Integer, Integer> map = new ConcurrentHashMap<>();
 
+    // 5000 个线程同时跑，然后允许200个线程同时获取许可，执行并发操作-对map 的set 操作
+    // 最终是成功的，5000条数据插入
     public static void main(String[] args) throws Exception {
         ExecutorService executorService = Executors.newCachedThreadPool();
         final Semaphore semaphore = new Semaphore(threadTotal);
