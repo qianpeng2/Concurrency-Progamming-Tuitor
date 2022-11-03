@@ -27,6 +27,14 @@ public class DeadLock implements Runnable {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                // 本质上是由于线程1,2并行执行，分别拿到对象1,2的锁，然后同时休眠500ms
+                // 休眠结束后，同时开始想拿对方的锁，但是自己之前拿到的锁又没有被释放
+                // 因此陷入了永远的死锁
+                // synchronized 做同步的一个最大的缺点就是，无法主动释放锁，也不知道什么时候可以释放锁
+                // synchronized 释放锁的情况：1）被锁住的代码块执行完成 ，2）被锁住的代码块发生了异常，JVM会让该线程自动释放锁
+                // (前提是JVM正常运行，如果JVM被异常终止了进程或者服务器关机，则无法释放，但是这种情况下，
+                // 自动重启JVM的话，这个锁也不会存在了)
+                // 另外一个缺点是 synchronized 是非公平锁，且无法实现读读不冲突(也就是这种情况下 2个读线程都会冲突，远不如Lock 方便)
                 synchronized (o2) {
                     log.info("1");
                 }
