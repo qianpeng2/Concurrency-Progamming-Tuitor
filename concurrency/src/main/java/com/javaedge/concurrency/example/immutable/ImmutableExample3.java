@@ -8,7 +8,8 @@ import com.javaedge.concurrency.annoations.ThreadSafe;
 @ThreadSafe
 public class ImmutableExample3 {
 
-    private final static ImmutableList<Integer> list = ImmutableList.of(1, 2, 3);
+    // Immutable 就是不可变的意思，相关的类都是不可变类
+    private final static ImmutableList<Integer> list = ImmutableList.of(1, 2, 3);// 不能再做更新操作了，否则异常
 
     private final static ImmutableSet set = ImmutableSet.copyOf(list);
 

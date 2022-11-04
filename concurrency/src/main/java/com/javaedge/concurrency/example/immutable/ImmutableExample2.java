@@ -17,7 +17,7 @@ public class ImmutableExample2 {
         map.put(1, 2);
         map.put(3, 4);
         map.put(5, 6);
-        map = Collections.unmodifiableMap(map);
+        map = Collections.unmodifiableMap(map);// 此时这个map 已经是不能更改了，不能再次put操作，否则抛出异常
     }
 
     public static void main(String[] args) {

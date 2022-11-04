@@ -25,7 +25,7 @@ public class ImmutableExample1 {
 //        b = "3";
 //        map = Maps.newHashMap();
         map.put(1, 3);
-        log.info("{}", map.get(1));
+        log.info("value={}", map.get(1));
     }
 
     private void test(final int a) {
