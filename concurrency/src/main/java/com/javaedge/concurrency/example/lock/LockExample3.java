@@ -63,7 +63,7 @@ public class LockExample3 {
         // 改了之后这个主线程居然不会停止
         ExecutorService executorService = Executors.newCachedThreadPool();
         final Semaphore semaphore = new Semaphore(5);
-        int count = 10;// 在10个线程并发的情况下，正常，一旦线程数超过了100，那么还是容易出现并发的报错
+        int count = 100;// 在10个线程并发的情况下，正常，一旦线程数超过了100，那么还是容易出现并发的报错
         CountDownLatch countDownLatch = new CountDownLatch(count);
         LockExample3 lockExample3 = new LockExample3();
         for (int i = 0; i < count; i++) {
@@ -80,7 +80,11 @@ public class LockExample3 {
                     semaphore.acquire();
                     log.info("线程{}-put", num);
                     lockExample3.put(num, new Data());
-                    log.info("getAllKeys={}", lockExample3.getAllKeys());
+                    /**
+                     * getAllKeys 容易导致异常，因为 map = new TreeMap<>() 非线程安全
+                     * java.util.ConcurrentModificationException
+                     */
+//                    log.info("getAllKeys={}", lockExample3.getAllKeys());// 注释该行是可以不出现之前的报错的
                     log.info("线程{}-get", num);
                     lockExample3.get(num);
                     semaphore.release();
