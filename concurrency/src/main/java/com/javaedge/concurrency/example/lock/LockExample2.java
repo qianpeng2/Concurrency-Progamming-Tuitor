@@ -48,19 +48,17 @@ public class LockExample2 {
 
     private static void add(int num) {
 
-        // 不能放在 try 中，否则多个线程同时到达，尝试加锁的时候
-        // 加锁失败的线程也被迫进入了 finally方法，将这个锁释放掉(相当于释放掉了其他线程持有的锁)，这是严重的问题
+        // 其实也放在 try 中
 //        lock.lock();
-
         try {
             lock.lock();// 加锁操作放到这里，且尝试抛出异常，结果也是正确的，为啥?
-            // 加锁操作必须放到try 代码块，因为这样，就算异常，也可以捕获且释放锁
             count++;
-            if (num / 10 == 0) {
-                throw new RuntimeException("异常");
-            }
+//            if (num / 10 == 0) {
+//                throw new RuntimeException("异常");
+//            }
 
         } finally {
+            // 释放锁的时候会判断是否是当前线程的锁，不存在将其他线上的锁释放掉的情况
             lock.unlock();
         }
     }
