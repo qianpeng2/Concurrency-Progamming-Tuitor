@@ -12,7 +12,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 @Slf4j
 public class LockExample3 {
 
-    private final Map<String, Data> map = new TreeMap<>();
+    private final Map<String, Data> map = new ConcurrentHashMap<>();
 
     private final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
 
@@ -83,8 +83,10 @@ public class LockExample3 {
                     /**
                      * getAllKeys 容易导致异常，因为 map = new TreeMap<>() 非线程安全
                      * java.util.ConcurrentModificationException
+                     *
+                     * 内部的 map 换为 ConcurrentHashMap 可支持高并发
                      */
-//                    log.info("getAllKeys={}", lockExample3.getAllKeys());// 注释该行是可以不出现之前的报错的
+                    log.info("getAllKeys={}", lockExample3.getAllKeys());// 注释该行是可以不出现之前的报错的
                     log.info("线程{}-get", num);
                     lockExample3.get(num);
                     semaphore.release();
