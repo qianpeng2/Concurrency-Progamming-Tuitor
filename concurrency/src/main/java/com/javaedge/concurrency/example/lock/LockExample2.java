@@ -28,11 +28,12 @@ public class LockExample2 {
         ExecutorService executorService = Executors.newCachedThreadPool();
         final Semaphore semaphore = new Semaphore(threadTotal);
         final CountDownLatch countDownLatch = new CountDownLatch(clientTotal);
-        for (int i = 0; i < clientTotal ; i++) {
+        for (int i = 0; i < clientTotal; i++) {
+            final int num = i;
             executorService.execute(() -> {
                 try {
                     semaphore.acquire();
-                    add();
+                    add(num);
                     semaphore.release();
                 } catch (Exception e) {
                     log.error("exception", e);
@@ -45,10 +46,20 @@ public class LockExample2 {
         log.info("count:{}", count);
     }
 
-    private static void add() {
-        lock.lock();
+    private static void add(int num) {
+
+        // 不能放在 try 中，否则多个线程同时到达，尝试加锁的时候
+        // 加锁失败的线程也被迫进入了 finally方法，将这个锁释放掉(相当于释放掉了其他线程持有的锁)，这是严重的问题
+//        lock.lock();
+
         try {
+            lock.lock();// 加锁操作放到这里，且尝试抛出异常，结果也是正确的，为啥?
+            // 加锁操作必须放到try 代码块，因为这样，就算异常，也可以捕获且释放锁
             count++;
+            if (num / 10 == 0) {
+                throw new RuntimeException("异常");
+            }
+
         } finally {
             lock.unlock();
         }
